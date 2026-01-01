@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="ar">
 <head>
-<meta charset="UTF-8">
-<title>OSINT Analyzer Ultimate (Rako)</title>
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://unpkg.com/vis-network/styles/vis-network.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<style>
+    <meta charset="UTF-8">
+    <title>OSINT Analyzer Ultimate (Rako)</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/vis-network/styles/vis-network.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
 body { font-family: Rubik, sans-serif; background:#121212; color:#fff; }
 .container { max-width: 1400px; }
 #resultMap { border:2px solid #333; height:700px; margin-top:20px; background:#1e1e1e; border-radius:12px; position:relative; }
@@ -23,24 +23,25 @@ body { font-family: Rubik, sans-serif; background:#121212; color:#fff; }
 .result-card button:hover { background:#ffc107; }
 .spinner-inline { display:inline-block; width:18px; height:18px; border:2px solid rgba(255,255,255,0.2); border-top-color:#ffc107; border-radius:50%; animation:spin 1s linear infinite; vertical-align:middle; margin-left:8px;}
 @keyframes spin { to { transform:rotate(360deg); } }
-</style>
+    </style>
 </head>
 <body>
 <div class="container mt-4">
-    <h2 class="text-center mb-3">🔍 OSINT Analyzer Ultimate</h2>
+    <h2 class="text-center mb-3">锟�9锟�3 OSINT Analyzer Ultimate</h2>
 
     <form id="searchForm" class="p-3 bg-dark rounded mt-3">
         <div class="input-group mb-2">
-            <input type="text" id="queryInput" class="form-control" placeholder="ادخل اسم الشخص او الشركة ..." required>
-            <button class="btn btn-warning" id="searchBtn"><i class="fa-solid fa-magnifying-glass"></i> بحث</button>
+            <input type="text" id="queryInput" class="form-control" placeholder="丕亘丨孬 毓賳 丕爻賲 丕賵 賲毓乇賮..." required>
+            <button class="btn btn-warning" id="searchBtn"><i class="fa-solid fa-magnifying-glass"></i> 亘丨孬</button>
         </div>
+
         <div class="input-group">
-            <label class="input-group-text" for="depthSelect">عمق البحث</label>
+            <label class="input-group-text" for="depthSelect">毓賲賯 丕賱亘丨孬</label>
             <select id="depthSelect" class="form-select">
-                <option value="1">1 صفحة</option>
-                <option value="2" selected>2 صفحات</option>
-                <option value="3">3 صفحات</option>
-                <option value="5">5 صفحات</option>
+                <option value="1">1 賲爻鬲賵賶</option>
+                <option value="2" selected>2 賲爻鬲賵賷丕鬲</option>
+                <option value="3">3 賲爻鬲賵賷丕鬲</option>
+                <option value="5">5 賲爻鬲賵賷丕鬲</option>
             </select>
         </div>
     </form>
@@ -48,7 +49,7 @@ body { font-family: Rubik, sans-serif; background:#121212; color:#fff; }
     <div id="resultMap"></div>
 
     <div class="mt-4 p-3 bg-dark rounded">
-        <h4><i class="fa-solid fa-list"></i> النتائج الخام</h4>
+        <h4><i class="fa-solid fa-list"></i> 賳鬲丕卅噩 丕賱亘丨孬</h4>
         <div id="results"></div>
     </div>
 </div>
@@ -87,8 +88,8 @@ document.getElementById("searchForm").onsubmit = async function(e){
         renderGraph(data, query);
     } catch (err) {
         console.error(err);
-        document.getElementById("results").innerHTML = `<div class="text-danger">خطأ في جلب النتائج: ${err.message}</div>`;
-        document.getElementById("resultMap").innerHTML = `<h3 class= text-center mt-5 text-danger >حدث خطأ أثناء البحث</h3>`;
+        document.getElementById("results").innerHTML = `<div class="text-danger">禺胤兀 兀孬賳丕亍 丕賱胤賱亘: ${escapeHtml(err.message)}</div>`;
+        document.getElementById("resultMap").innerHTML = `<h3 class="text-center mt-5 text-danger">賮卮賱 賮賷 鬲丨賲賷賱 丕賱禺乇賷胤丞</h3>`;
     } finally {
         searchBtn.disabled = false;
         if(spinner && spinner.parentNode) spinner.parentNode.removeChild(spinner);
@@ -100,7 +101,7 @@ function renderResults(data){
     container.innerHTML = "";
 
     if(!Array.isArray(data) || data.length === 0){
-        container.innerHTML = `<div class="text-muted">لا توجد نتائج.</div>`;
+        container.innerHTML = `<div class="text-muted">賱丕 鬲賵噩丿 賳鬲丕卅噩.</div>`;
         return;
     }
 
@@ -133,8 +134,9 @@ function renderResults(data){
             `;
 
             const btn = document.createElement("button");
-            btn.textContent = "تفاصيل";
-            btn.onclick = ()=> alert(`العنوان: ${result.title || ""}\nالرابط: ${result.link || ""}\nالنوع: ${type}`);
+            btn.textContent = "毓乇囟";
+            btn.onclick = ()=> alert(`丕賱毓賳賵丕賳: ${result.title || ""}\n丕賱乇丕亘胤: ${result.link || ""}\n丕賱賳賵毓: ${type}`);
+
             card.appendChild(img);
             card.appendChild(info);
             card.appendChild(btn);
@@ -148,7 +150,7 @@ function renderGraph(data, queryName){
     container.innerHTML = "";
 
     if(!Array.isArray(data) || data.length === 0){
-        container.innerHTML = `<h3 class= text-center mt-5 text-danger >لا توجد نتائج لرسم الخريطة</h3>`;
+        container.innerHTML = `<h3 class="text-center mt-5 text-danger">賱丕 鬲賵噩丿 亘賷丕賳丕鬲 賱毓乇囟賴丕 毓賱賶 丕賱禺乇賷胤丞</h3>`;
         return;
     }
 
@@ -167,7 +169,7 @@ function renderGraph(data, queryName){
         shape:"box",
         color:"#ffc107",
         font:{color:"#000", size:18},
-        title:"نتائج البحث"
+        title:"賲氐丿乇 丕賱亘丨孬"
     });
 
     const typeGroups = {};
@@ -205,7 +207,7 @@ function renderGraph(data, queryName){
             shape:"image",
             image:icon,
             font:{color:"#fff"},
-            title:`تصنيف: ${type}`
+            title:`賮卅丞: ${type}`
         });
         edges.push({from:1, to:typeId, arrows:{to:{enabled:true, scaleFactor:2}}, smooth:true, length:350});
 
@@ -217,9 +219,8 @@ function renderGraph(data, queryName){
                 shape:"image",
                 image: result.image || icon,
                 font:{color:"#fff"},
-                title:`${result.title || ""}\n${result.link || ""}\nنوع: ${result.type || type}`
+                title:`${result.title || ""}\n${result.link || ""}\n賳賵毓: ${result.type || type}`
             });
-            // fixed: use string for cubicBezier type instead of undefined variable
             edges.push({from:typeId, to:id, arrows:{to:{enabled:true}}, dashes:true, smooth:{type: "cubicBezier"}, length:200});
         });
     }
@@ -234,7 +235,7 @@ function renderGraph(data, queryName){
         nodes: { borderWidth:1 }
     });
 
-    // Hover tooltip — robustly handle event shapes
+    // Hover tooltip 鈥� robustly handle event shapes
     network.on("hoverNode", function(params){
         const node = network.body.data.nodes.get(params.node);
         if(!node) return;
@@ -242,33 +243,33 @@ function renderGraph(data, queryName){
         tooltip.style.display = "block";
         tooltip.setAttribute("aria-hidden", "false");
 
-        // event might be srcEvent (vis 9.x) or direct event
         const ev = (params.event && (params.event.srcEvent || params.event)) || window.event || {};
         const pageX = ev.pageX || (ev.touches && ev.touches[0] && ev.touches[0].pageX) || 0;
         const pageY = ev.pageY || (ev.touches && ev.touches[0] && ev.touches[0].pageY) || 0;
 
-        // Make sure tooltip stays inside window
         const margin = 12;
         let left = pageX + 10;
         let top = pageY + 10;
-        const maxLeft = window.innerWidth - tooltip.offsetWidth - margin;
-        const maxTop = window.innerHeight - tooltip.offsetHeight - margin;
-        if(left > maxLeft) left = maxLeft;
-        if(top > maxTop) top = maxTop;
-        tooltip.style.left = left + "px";
-        tooltip.style.top  = top + "px";
+        // delay layout read to ensure offsetWidth/Height available
+        requestAnimationFrame(()=>{
+            const maxLeft = window.innerWidth - tooltip.offsetWidth - margin;
+            const maxTop = window.innerHeight - tooltip.offsetHeight - margin;
+            if(left > maxLeft) left = maxLeft;
+            if(top > maxTop) top = maxTop;
+            tooltip.style.left = left + "px";
+            tooltip.style.top  = top + "px";
+        });
     });
     network.on("blurNode",()=> {
         tooltip.style.display = "none";
         tooltip.setAttribute("aria-hidden", "true");
     });
 
-    // Optional: click nodes to open their link if present
+    // click to open link if present in title
     network.on("click", function(params){
         if(params.nodes && params.nodes.length){
             const node = network.body.data.nodes.get(params.nodes[0]);
             if(node && node.title){
-                // title may contain link on a newline; attempt to extract URL
                 const parts = (node.title + "").split(/\n/).map(s => s.trim()).filter(Boolean);
                 const maybeLink = parts.find(p => p.startsWith("http://") || p.startsWith("https://"));
                 if(maybeLink) window.open(maybeLink, "_blank");
@@ -279,16 +280,16 @@ function renderGraph(data, queryName){
 
 // small helper: escape HTML in inserted strings
 function escapeHtml(s){
-    return String(s || "").replace(/[&<>" `=\/]/g, function(ch) {
+    return String(s || "").replace(/[&<>"'`=\/]/g, function(ch) {
         return ({
-             & :  &amp; ,
-             < :  &lt; ,
-             > :  &gt; ,
-             " :  &quot; ,
-            " ":  &#39; ,
-             / :  &#47; ,
-             ` :  &#96; ,
-             = :  &#61; 
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            '"': '&quot;',
+            "'": '&#39;',
+            '/': '&#47;',
+            '`': '&#96;',
+            '=': '&#61;'
         })[ch];
     });
 }
